@@ -4,7 +4,7 @@ from shutil import copyfile
 import numpy as np
 import cv2 as cv
 
-for i, (image_filename, label_filename) in enumerate(zip(os.listdir('images'), os.listdir('labels'))):
+for i, image_filename in enumerate(os.listdir('images')):
     img = cv.imread(f'images/{image_filename}')
     if not os.path.exists('augmentation'):
         os.makedirs('augmentation')
@@ -12,6 +12,7 @@ for i, (image_filename, label_filename) in enumerate(zip(os.listdir('images'), o
         os.makedirs('augmentation/images')
     if not os.path.exists('augmentation/labels'):
         os.makedirs('augmentation/labels')  
+    file_name = image_filename.split('.')[0]
 
     # make blue cones
     red = img[:,:,2].copy()
@@ -20,8 +21,8 @@ for i, (image_filename, label_filename) in enumerate(zip(os.listdir('images'), o
     img[:,:,0] = red
     img[:,:,2] = blue
 
-    cv.imwrite(f'augmentation/images/{i+600}.jpeg', img)
-    copyfile(f'labels/{label_filename}', f'augmentation/labels/{i+600}.txt')
+    cv.imwrite(f'augmentation/images/{i+600}.jpg', img)
+    copyfile(f'labels/{file_name}.txt', f'augmentation/labels/{i+600}.txt')
 
     # redo to original
     img[:,:,2] = red
@@ -33,5 +34,7 @@ for i, (image_filename, label_filename) in enumerate(zip(os.listdir('images'), o
     blue = img[:,:,0].copy()
 
     img[:,:,1] = red
-    cv.imwrite(f'augmentation/images/{i+2000}.jpeg', img)
-    copyfile(f'labels/{label_filename}', f'augmentation/labels/{i+2000}.txt')
+    cv.imwrite(f'augmentation/images/{i+2000}.jpg', img)
+    copyfile(f'labels/{file_name}.txt', f'augmentation/labels/{i+2000}.txt')
+
+
