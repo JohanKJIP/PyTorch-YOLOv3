@@ -3,7 +3,7 @@ from __future__ import division
 from models import *
 from utils.utils import *
 from utils.datasets import *
-from task1.colour_estimation import guess_color
+from task1.colour_estimation import guess_color_better
 
 import os
 import sys
@@ -114,7 +114,7 @@ if __name__ == "__main__":
 
 
                         detection_frame = img[y1:y1+box_h, x1:x1+box_w]
-                        color_name = guess_color(detection_frame)
+                        color_name = guess_color_better(detection_frame)
                         # bgr color space
                         if color_name == 'blue':
                             color = (255, 0, 0)
@@ -128,8 +128,7 @@ if __name__ == "__main__":
                         img = cv2.rectangle(img, start_point, end_point, color, 2)
                         y_text = y1 - 5
                         if y_text < 0: y_text = 0
-                        cv2.putText(img, f'{color_name} {classes[int(cls_pred)]}', (x1, y1), cv2.FONT_HERSHEY_DUPLEX, 0.5, color, 1)
-                        cv2.putText(img, str("%.2f" % float(conf)), (x2, y1), cv2.FONT_HERSHEY_DUPLEX, 0.5, color, 1)
+                        cv2.putText(img, f'{color_name} {classes[int(cls_pred)]}', (x1, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
             out.write(img)
             cv2.imshow('Cone detection', img)
         if cv2.waitKey(1) & 0xFF == ord('q'):

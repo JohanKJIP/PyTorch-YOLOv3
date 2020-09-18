@@ -3,6 +3,42 @@ import os
 import cv2
 import numpy as np
 
+def guess_color_better(img) -> str:
+    if img.shape[0] == 0 or img.shape[1] == 0:
+        return 'unknown'
+    top_crop = 0.25
+    bottom_crop = 0.1
+    sides_crop = 0.25
+    x = img.shape[1]
+    y = img.shape[0]
+    cropped_img = img[int(y/2):y - int(y*bottom_crop), int(x*sides_crop):int(x - x*sides_crop)]
+    blurred = cv2.GaussianBlur(cropped_img, (5, 5), 0)
+    hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
+
+    red_mask = cv2.inRange(hsv,(0, 100, 20), (20, 255, 255))
+    yellow_mask = cv2.inRange(hsv,(20, 100, 20), (35, 255, 255))
+    blue_mask = cv2.inRange(hsv,(85, 100, 20), (130, 255, 255))
+    mask_list = [('red', red_mask), ('yellow', yellow_mask), ('blue', blue_mask)]
+    number_samples = 10
+    xs = np.random.randint(hsv.shape[1], size=number_samples)
+    ys = np.random.randint(hsv.shape[0], size=number_samples)
+
+    WHITE_PIXEL = 255
+    mask_ratios = []
+    # sample for white
+    for mask_name, mask in mask_list:
+        white_pixels = 0
+        count = 0
+        for x, y in zip(xs, ys):
+            if mask[y, x] == WHITE_PIXEL:
+                white_pixels += 1
+            count += 1
+        ratio = white_pixels / count
+        mask_ratios.append((mask_name, ratio))
+
+    sorted_mask_rations = sorted(mask_ratios, key = lambda x: x[1])
+    return sorted_mask_rations[-1][0]
+
 def guess_color(img) -> str:
     if img.shape[0] == 0 or img.shape[1] == 0:
         return 'unknown'
@@ -12,9 +48,8 @@ def guess_color(img) -> str:
     x = img.shape[1]
     y = img.shape[0]
     cropped_img = img[int(y/2):y - int(y*bottom_crop), int(x*sides_crop):int(x - x*sides_crop)]
-    #blurred = cv2.GaussianBlur(cropped_img, (5, 5), 0)
-    #cv2.imshow('image', blurred)
-    hsv = cv2.cvtColor(cropped_img, cv2.COLOR_BGR2HSV)
+    blurred = cv2.GaussianBlur(cropped_img, (5, 5), 0)
+    hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
 
     samples = 25
     xs = np.random.randint(hsv.shape[1], size=samples)
@@ -41,7 +76,7 @@ def main() -> None:
     count = 0
     for file_name in os.listdir('images'):
         img = cv2.imread(f'images/{file_name}')
-        file_color = guess_color(img)
+        file_color = guess_color_better(img)
         print(f'{file_name}: {file_color}')
         if file_color == file_name.split('_')[0]:
             correct += 1
