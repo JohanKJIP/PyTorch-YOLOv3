@@ -127,6 +127,7 @@ if __name__ == "__main__":
                 metric_table += [[metric, *row_metrics]]
 
                 # Tensorboard logging
+                """
                 tensorboard_log = []
                 for j, yolo in enumerate(model.yolo_layers):
                     for name, metric in yolo.metrics.items():
@@ -134,6 +135,7 @@ if __name__ == "__main__":
                             tensorboard_log += [(f"{name}_{j+1}", metric)]
                 tensorboard_log += [("loss", loss.item())]
                 logger.list_of_scalars_summary(tensorboard_log, batches_done)
+                """
 
             log_str += AsciiTable(metric_table).table
             log_str += f"\nTotal loss {loss.item()}"
