@@ -3,7 +3,7 @@ from __future__ import division
 from models import *
 from utils.utils import *
 from utils.datasets import *
-from task1.colour_estimation import guess_color_better
+from utils.colour_estimation import guess_color_better
 
 import os
 import sys
