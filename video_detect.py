@@ -71,8 +71,8 @@ if __name__ == "__main__":
 
     Tensor = torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor
 
-    file_name = '3.mp4'
-    cap = cv2.VideoCapture(f'videos/{file_name}')
+    file_name = 'data/videos/3.mp4'
+    cap = cv2.VideoCapture(file_name)
     width  = int(cap.get(3))
     height = int(cap.get(4))
     fourcc = cv2.VideoWriter_fourcc('X', 'V', 'I', 'D')
