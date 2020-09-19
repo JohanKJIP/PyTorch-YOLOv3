@@ -6,8 +6,8 @@ import numpy as np
 def guess_color_better(img) -> str:
     if img.shape[0] == 0 or img.shape[1] == 0:
         return 'unknown'
-    top_crop = 0.25
-    bottom_crop = 0.1
+    top_crop = 0.15
+    bottom_crop = 0.15
     sides_crop = 0.25
     x = img.shape[1]
     y = img.shape[0]
@@ -17,27 +17,30 @@ def guess_color_better(img) -> str:
 
     red_mask = cv2.inRange(hsv,(0, 100, 20), (20, 255, 255))
     yellow_mask = cv2.inRange(hsv,(20, 100, 20), (35, 255, 255))
-    blue_mask = cv2.inRange(hsv,(85, 100, 20), (130, 255, 255))
+    blue_mask = cv2.inRange(hsv,(95, 130, 20), (130, 255, 255))
     mask_list = [('red', red_mask), ('yellow', yellow_mask), ('blue', blue_mask)]
     number_samples = 10
-    xs = np.random.randint(hsv.shape[1], size=number_samples)
     ys = np.random.randint(hsv.shape[0], size=number_samples)
+    xs = np.random.randint(hsv.shape[1], size=number_samples)
 
     WHITE_PIXEL = 255
     mask_ratios = []
-    # sample for white
+    # sample for masked values in the middle of the picture
     for mask_name, mask in mask_list:
         white_pixels = 0
         count = 0
-        for x, y in zip(xs, ys):
-            if mask[y, x] == WHITE_PIXEL:
+        for y, x in zip(ys, xs):
+            if (mask[y, x] == WHITE_PIXEL):
                 white_pixels += 1
             count += 1
         ratio = white_pixels / count
         mask_ratios.append((mask_name, ratio))
 
     sorted_mask_rations = sorted(mask_ratios, key = lambda x: x[1])
-    return sorted_mask_rations[-1][0]
+    mask_name, ratio = sorted_mask_rations[-1]
+    if ratio == 0:
+        return 'unknown'
+    return mask_name
 
 def guess_color(img) -> str:
     if img.shape[0] == 0 or img.shape[1] == 0:
@@ -51,7 +54,7 @@ def guess_color(img) -> str:
     blurred = cv2.GaussianBlur(cropped_img, (5, 5), 0)
     hsv = cv2.cvtColor(blurred, cv2.COLOR_BGR2HSV)
 
-    samples = 25
+    samples = 10
     xs = np.random.randint(hsv.shape[1], size=samples)
     ys = np.random.randint(hsv.shape[0], size=samples)
     summed_hue = 0

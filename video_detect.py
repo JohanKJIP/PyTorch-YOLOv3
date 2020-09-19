@@ -71,13 +71,14 @@ if __name__ == "__main__":
 
     Tensor = torch.cuda.FloatTensor if torch.cuda.is_available() else torch.FloatTensor
 
-    file_name = '2.mp4'
+    file_name = '3.mp4'
     cap = cv2.VideoCapture(f'videos/{file_name}')
     width  = int(cap.get(3))
     height = int(cap.get(4))
     fourcc = cv2.VideoWriter_fourcc('X', 'V', 'I', 'D')
     file_name = file_name.split('.')[0]
-    out = cv2.VideoWriter(f'output/{file_name}.avi', fourcc, 25.0, (width, height))
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    out = cv2.VideoWriter(f'output/{file_name}.avi', fourcc, fps, (width, height))
     
     while cap.isOpened():
         ret, img = cap.read()
@@ -114,7 +115,10 @@ if __name__ == "__main__":
 
 
                         detection_frame = img[y1:y1+box_h, x1:x1+box_w]
+                        #start = time.time()
                         color_name = guess_color_better(detection_frame)
+                        #end = time.time()
+                        #print(f'Elapsed time: {(end-start)*1000}ms')
                         # bgr color space
                         if color_name == 'blue':
                             color = (255, 0, 0)
@@ -126,8 +130,6 @@ if __name__ == "__main__":
                             color = (169, 169, 169)
 
                         img = cv2.rectangle(img, start_point, end_point, color, 2)
-                        y_text = y1 - 5
-                        if y_text < 0: y_text = 0
                         cv2.putText(img, f'{color_name} {classes[int(cls_pred)]}', (x1, y1 - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
             out.write(img)
             cv2.imshow('Cone detection', img)
