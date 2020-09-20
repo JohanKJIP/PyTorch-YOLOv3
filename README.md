@@ -3,7 +3,9 @@
 Using YOLOv3 implementation from ![here](https://github.com/eriklindernoren/PyTorch-YOLOv3).
 
 ### Results
-![preview](https://j.gifs.com/ANpVPj.gif)
+<p align="center">
+<img src="https://j.gifs.com/zvk3v2.gif"/>
+</p>
 
 Final iteration:
 
