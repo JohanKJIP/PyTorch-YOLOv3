@@ -3,7 +3,7 @@
 Using YOLOv3 implementation from ![here](https://github.com/eriklindernoren/PyTorch-YOLOv3).
 
 ### Results
-<div style='position:relative;padding-bottom:54.921%;'><iframe src="//gifs.com/embed/final2-ANpVPj" scrolling="no" style="backface-visibility: hidden; transform: scale(1); position: absolute; height: 100%; width: 100%;" width="630" height="346" frameborder="0"></iframe></div>
+![preview](https://j.gifs.com/ANpVPj.gif)
 
 Final iteration:
 
