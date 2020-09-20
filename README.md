@@ -9,15 +9,15 @@ Using YOLOv3 implementation from ![here](https://github.com/eriklindernoren/PyTo
 
 Final iteration:
 
-- ![Close cones](https://youtu.be/63t9inNP2ao)
-- ![Cones on track](https://youtu.be/zXURDLLD3wE)
-- ![Other cones](https://youtu.be/vtaUvGwF3Dc)
+- Close cones: https://youtu.be/63t9inNP2ao
+- Cones on track: https://youtu.be/zXURDLLD3wE
+- Other cones: https://youtu.be/vtaUvGwF3Dc
 
 Old version, more stable but worse on long range:
 
-- ![Close cones](https://youtu.be/TvAsGWcQL0c)
-- ![Cones on track](https://youtu.be/IbSd45sqzYo)
-- ![Other cones](https://youtu.be/hRu43fHbzWM)
+- Close cones: https://youtu.be/TvAsGWcQL0c
+- Cones on track: https://youtu.be/IbSd45sqzYo
+- Other cones: https://youtu.be/hRu43fHbzWM
 
 # KTH Formula specifics
 
