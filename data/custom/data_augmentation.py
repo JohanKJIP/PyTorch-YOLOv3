@@ -48,6 +48,10 @@ def b2y(image) -> None:
 
 def main() -> None:
     """Perform data augmentation."""
+    if not os.path.exists('labels'):
+        os.makedirs('labels')
+    if not os.path.exists('images'):
+        os.makedirs('images')
     for cone_color in os.listdir('sources/images'):
         for image_filename in os.listdir(f'sources/images/{cone_color}'):
             img = cv.imread(f'sources/images/{cone_color}/{image_filename}')
