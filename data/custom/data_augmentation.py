@@ -47,6 +47,7 @@ def b2y(image) -> None:
     return img
 
 def main() -> None:
+    """Perform data augmentation."""
     for cone_color in os.listdir('sources/images'):
         for image_filename in os.listdir(f'sources/images/{cone_color}'):
             img = cv.imread(f'sources/images/{cone_color}/{image_filename}')
