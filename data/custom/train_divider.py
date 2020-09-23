@@ -21,6 +21,6 @@ with open('valid.txt', 'w') as f:
     for image in validation:
         f.write(f'data/custom/images/{image}\n')
 
-print(len(images))
-print(len(train))
-print(len(validation))
+print(f'Number of images: {len(images)}')
+print(f'Train samples: {len(train)}')
+print(f'Validation samples: {len(validation)}')
