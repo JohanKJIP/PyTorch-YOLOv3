@@ -33,10 +33,11 @@ Old version, more stable but worse on long range:
 2. `pip install requirements.txt`
 
 To detect video:
-`python video_detect.py --weights_path <path_to_weights> --video <video name in data/videos>`
+1. Download weights, link: https://mega.nz/file/sfxyAbxI#eSr0i9JBCtQcetH2IvTRLMAqukp4J3ilwI8UrPXJB7k
+2. `python video_detect.py --weights_path <path_to_weights> --video <video name in data/videos>`
 
 To train network:
-1. Download sources.zip, link (todo)
+1. Download sources.zip, link: https://mega.nz/file/cDpSXThK#oT3P3CdHbgW9Uk1VUc_aLE_pyj_y57gX-vF_tsv3IPQ 
 2. Extract `sources` folder into `data/custom`
 3. Run `data_augmentation.py` inside `custom`
 4. Run `train_divider.py` inside `custom`
