@@ -34,7 +34,8 @@ Old version, more stable but worse on long range:
 
 To detect video:
 1. Download weights, link: https://mega.nz/file/sfxyAbxI#eSr0i9JBCtQcetH2IvTRLMAqukp4J3ilwI8UrPXJB7k
-2. `python video_detect.py --weights_path <path_to_weights> --video <video name in data/videos>`
+2. `python video_detect.py --weights_path <path_to_weights> --video <video name in data/videos>` (might have to create the videos directory).
+3. Press Q to stop the detection when the window is active.
 
 To train network:
 1. Download sources.zip, link: https://mega.nz/file/cDpSXThK#oT3P3CdHbgW9Uk1VUc_aLE_pyj_y57gX-vF_tsv3IPQ 
