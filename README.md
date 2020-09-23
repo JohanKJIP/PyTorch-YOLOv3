@@ -5,19 +5,21 @@ Using YOLOv3 implementation from ![here](https://github.com/eriklindernoren/PyTo
 Short project report and rule quiz answers can be found in the file `report.md`.
 
 ### Results
-<div style='position:relative;padding-bottom:54.921%;'><iframe src="//gifs.com/embed/final2-ANpVPj" scrolling="no" style="backface-visibility: hidden; transform: scale(1); position: absolute; height: 100%; width: 100%;" width="630" height="346" frameborder="0"></iframe></div>
+<p align="center">
+<img src="https://j.gifs.com/zvk3v2.gif"/>
+</p>
 
 Final iteration:
 
-- ![Close cones](https://youtu.be/63t9inNP2ao)
-- ![Cones on track](https://youtu.be/zXURDLLD3wE)
-- ![Other cones](https://youtu.be/vtaUvGwF3Dc)
+- Close cones: https://youtu.be/63t9inNP2ao
+- Cones on track: https://youtu.be/zXURDLLD3wE
+- Other cones: https://youtu.be/vtaUvGwF3Dc
 
 Old version, more stable but worse on long range:
 
-- ![Close cones](https://youtu.be/TvAsGWcQL0c)
-- ![Cones on track](https://youtu.be/IbSd45sqzYo)
-- ![Other cones](https://youtu.be/hRu43fHbzWM)
+- Close cones: https://youtu.be/TvAsGWcQL0c
+- Cones on track: https://youtu.be/IbSd45sqzYo
+- Other cones: https://youtu.be/hRu43fHbzWM
 
 # KTH Formula specifics
 
